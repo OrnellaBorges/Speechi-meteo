@@ -6,7 +6,6 @@ export function useGetWeather(latitude: number, longitude: number) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setError] = useState<boolean>(false);
 
-  // Fonction qui fait le fetch
   const fetchWeather = () => {
     const getWeather = async () => {
       try {
