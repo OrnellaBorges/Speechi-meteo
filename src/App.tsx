@@ -1,15 +1,18 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Weather } from "./view/Weather";
+import { Layout } from "./Layout";
+import { useClientLocation } from "./hooks/useClientLocation";
 
 function App() {
+  const { clientCoords, error } = useClientLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">Header</header>
-      <main>
-        <Weather />
-      </main>
-    </div>
+    <>
+      <Layout>
+        <Weather clientCoords={clientCoords} />
+      </Layout>
+    </>
   );
 }
 
