@@ -1,21 +1,42 @@
-import { createContext, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+  Children,
+} from "react";
+
+import { CoordType } from "../types/CoordsType";
 import { useClientLocation } from "../hooks/useClientLocation";
 
+//definition du type
+
 type LocationContextType = {
-  latitude: number | null;
-  longitude: number | null;
+  clientCoords: CoordType;
+  error: boolean;
 };
-/* 
-type WeatherContextType = {
 
-}
+//creer le context
+const LocationContext = createContext<LocationContextType | undefined>(
+  undefined
+);
 
-const WeatherContext = createContext<LocationContextType>({
-  latitude: null,
-  longitude: null,
-});
+//Creer le fournisseur = provider
 
-export const useLocation = () => useContext(LocationContext);
+export const LocationProvider = ({ children }: { children: ReactNode }) => {
+  const { clientCoords, error } = useClientLocation();
+  return (
+    <LocationContext.Provider value={{ clientCoords, error }}>
+      {children}
+    </LocationContext.Provider>
+  );
+};
 
-
- */
+export const useLocation = () => {
+  const context = useContext(LocationContext);
+  if (!context) {
+    throw new Error("useLocation must be used within a LocationProvider");
+  }
+  return context;
+};

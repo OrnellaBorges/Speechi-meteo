@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { Weather } from "./view/Weather";
 import { Layout } from "./Layout";
-import { useClientLocation } from "./hooks/useClientLocation";
+
+import { LocationProvider } from "./contexts/LocationContext";
 
 function App() {
-  const { clientCoords, error } = useClientLocation();
-
   return (
     <>
-      <Layout>
-        <Weather clientCoords={clientCoords} />
-      </Layout>
+      <LocationProvider>
+        <Layout>
+          <Weather />
+        </Layout>
+      </LocationProvider>
     </>
   );
 }

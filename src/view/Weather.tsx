@@ -1,23 +1,14 @@
 import { useGetWeather } from "../hooks/useGetWeather";
 import { CoordType } from "../types/CoordsType";
+import { useLocation } from "../contexts/LocationContext";
 
-type WeatherProps = {
-  clientCoords: CoordType;
-};
-
-export function Weather({ clientCoords }: WeatherProps) {
-  const { weatherInfos, isLoading, error } = useGetWeather(
+export function Weather() {
+  const { clientCoords, error } = useLocation();
+  const { weatherInfos, isLoading, isError } = useGetWeather(
     clientCoords.latitude,
     clientCoords.longitude
   );
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error fetching weather data: {error}</p>;
-  }
   console.log("ce que j'ai reçu", weatherInfos);
   return (
     <>
