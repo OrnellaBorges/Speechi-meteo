@@ -9,7 +9,7 @@ export function Weather() {
     clientCoords.longitude
   );
 
-  console.log("ce que j'ai reçu", weatherInfos);
+  console.log("datas =>>", weatherInfos);
   return (
     <>
       <h1>WEATHER</h1>

@@ -4,7 +4,6 @@ import {
   useState,
   useEffect,
   ReactNode,
-  Children,
 } from "react";
 
 import { CoordType } from "../types/CoordsType";

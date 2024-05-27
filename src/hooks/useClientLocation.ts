@@ -15,6 +15,7 @@ export function useClientLocation() {
     }
 
     const isSuccess = (position: GeolocationPosition) => {
+      console.warn("Success");
       setClientCoords({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
