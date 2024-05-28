@@ -23,10 +23,9 @@ const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
 
 // Créer le fournisseur (provider)
 export const WeatherProvider = ({ children }: { children: ReactNode }) => {
-  const { weatherInfos, isError, isLoading } = useGetWeather();
-
+  const weatherData = useGetWeather();
   return (
-    <WeatherContext.Provider value={{ weatherInfos, isLoading, isError }}>
+    <WeatherContext.Provider value={weatherData}>
       {children}
     </WeatherContext.Provider>
   );
