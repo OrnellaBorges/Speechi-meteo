@@ -12,14 +12,12 @@ import { useClientLocation } from "../hooks/useClientLocation";
 //definition du type
 
 type LocationContextType = {
-  coords: CoordType;
+  coords: CoordType | null;
   error: boolean;
 };
 
 //creer le context
-const LocationContext = createContext<LocationContextType | undefined>(
-  undefined
-);
+const LocationContext = createContext<LocationContextType | null>(null);
 
 //Creer le fournisseur = provider
 
