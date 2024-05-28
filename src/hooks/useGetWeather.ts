@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
+import { useClientLocation } from "./useClientLocation";
 
-export function useGetWeather(latitude: number, longitude: number) {
+import { WeatherResponse } from "../types/WeatherTypes";
+
+export function useGetWeather() {
   const [weatherInfos, setWeatherInfos] = useState<any>(null); // Changez {} en null pour initialiser correctement
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
+  const { coords, error } = useClientLocation();
+  console.log("coords", coords);
+
   useEffect(() => {
     const fetchWeather = async () => {
-      if (latitude && longitude) {
+      if (coords) {
         setIsLoading(true);
         try {
-          const response = await getWeatherByCoords(latitude, longitude);
+          const response = await getWeatherByCoords(
+            coords.latitude,
+            coords.longitude
+          );
           setWeatherInfos(response);
           setIsError(false);
         } catch (error) {
@@ -23,7 +32,7 @@ export function useGetWeather(latitude: number, longitude: number) {
     };
 
     fetchWeather();
-  }, [latitude, longitude]);
+  }, [coords]);
 
   return {
     weatherInfos,

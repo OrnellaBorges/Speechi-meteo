@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CoordType } from "../types/CoordsType";
 
 export function useClientLocation() {
-  const [clientCoords, setClientCoords] = useState<CoordType>({
+  const [coords, setCoords] = useState<CoordType>({
     latitude: 0,
     longitude: 0,
   });
@@ -16,7 +16,7 @@ export function useClientLocation() {
 
     const isSuccess = (position: GeolocationPosition) => {
       console.warn("Success");
-      setClientCoords({
+      setCoords({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
@@ -32,7 +32,7 @@ export function useClientLocation() {
   }, []);
 
   return {
-    clientCoords,
+    coords,
     error,
   };
 }

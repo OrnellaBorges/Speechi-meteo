@@ -1,9 +1,11 @@
 import { useGetWeather } from "../hooks/useGetWeather";
-import { useWeather } from "../contexts/WeatherContext";
+import { useLocation } from "../contexts/LocationContext";
 
 export function Weather() {
-  const { weatherInfos, isLoading, isError, error } = useWeather();
+  const { coords, error } = useLocation();
+  const { weatherInfos, isLoading, isError } = useGetWeather();
 
+  console.log("datas =>>", weatherInfos);
   return (
     <>
       {isLoading && <p>Loading...</p>}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
+import { useClientLocation } from "./useClientLocation";
 
 export function useGetWeather(latitude: number, longitude: number) {
   const [weatherInfos, setWeatherInfos] = useState<any>(null); // Changez {} en null pour initialiser correctement
