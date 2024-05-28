@@ -15,6 +15,7 @@ export function useGetWeather() {
   useEffect(() => {
     const fetchWeather = async () => {
       if (coords) {
+        console.log("loading");
         setIsLoading(true);
         try {
           const response = await getWeatherByCoords(
