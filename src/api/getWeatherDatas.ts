@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const urlWeather = "https://api.openweathermap.org/data/2.5/weather";
-const urlOneCall = "http://api.openweathermap.org/data/2.5/onecall";
+//const urlOneCall = "http://api.openweathermap.org/data/2.5/onecall";
 const API_KEY = "acf1e1df9b83f7767c986cbc7e90a553";
-const API_SPEECHI_KEY = "c6dea39f86ea31dc114f0a4f0eec8fa9";
 
 /* export const getWeatherByCity = async (city: string) => {
   console.log("fonction getWeather");
@@ -58,7 +57,6 @@ export const getWeatherByCoords = async (
         units: "metric",
       },
     });
-    console.log("response->API", response.data);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch weather data");

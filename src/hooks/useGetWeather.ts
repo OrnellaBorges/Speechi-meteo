@@ -38,9 +38,8 @@ export function useGetWeather() {
         lastCoords.current.latitude === latitude &&
         lastCoords.current.longitude === longitude
       ) {
-        return; // on fait rien pas de fetch !
+        return;
       }
-
       // On remplace la ref ancienne par les nouvelles coords
       lastCoords.current = { latitude, longitude };
       console.log("lastCoords UE", lastCoords);
