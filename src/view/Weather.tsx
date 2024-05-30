@@ -1,7 +1,8 @@
 import { useWeather } from "../contexts/WeatherContext";
 
 export function Weather() {
-  const { weatherInfos, isLoading, isError, error } = useWeather();
+  const { weatherInfos, isLoading, isError, error, requestApiCount } =
+    useWeather();
 
   return (
     <>
@@ -18,6 +19,9 @@ export function Weather() {
             alt={weatherInfos.weather[0].description}
           />
           <p>{weatherInfos.weather[0].description}</p>
+          <p style={{ color: "red" }}>
+            Number of API requests: {requestApiCount}
+          </p>
         </div>
       )}
     </>
