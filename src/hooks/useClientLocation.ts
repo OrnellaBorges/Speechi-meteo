@@ -24,7 +24,7 @@ export function useClientLocation() {
       setError(true);
     };
 
-    navigator.geolocation.getCurrentPosition(isSuccess, isError);
+    //navigator.geolocation.getCurrentPosition(isSuccess, isError);
 
     const watchCoord = navigator.geolocation.watchPosition(isSuccess, isError);
 

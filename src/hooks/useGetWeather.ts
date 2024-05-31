@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
 import { CoordType } from "../types/CoordsType";

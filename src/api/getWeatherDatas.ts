@@ -8,16 +8,30 @@ export const getWeatherByCoords = async (
   longitude: number | null
 ) => {
   try {
-    console.log("FETCH API");
-    const response = await axios.get(`${urlWeather}`, {
-      params: {
-        lat: latitude,
-        lon: longitude,
-        appid: API_KEY,
-        units: "metric",
-      },
-    });
-    return response.data;
+    //verifier si le cache LS contient la clé "cacheWeatherData"
+    const cachedWeatherData = localStorage.getItem("cacheWeatherData");
+    console.log("cache vide?  = ", cachedWeatherData);
+    if (cachedWeatherData) {
+      console.log("cache full");
+      return JSON.parse(cachedWeatherData);
+    } else {
+      //=> executer requête vers l'API
+      const response = await axios.get(`${urlWeather}`, {
+        params: {
+          lat: latitude,
+          lon: longitude,
+          appid: API_KEY,
+          units: "metric",
+        },
+      });
+
+      const weatherData = response.data;
+      console.log("weatherData", weatherData);
+      //creer la clé et stocker les datas de l'api dans cache LS weatherData
+      localStorage.setItem("cacheWeatherData", JSON.stringify(weatherData));
+
+      return weatherData;
+    }
   } catch (error) {
     throw new Error("Failed to fetch weather data");
   }
