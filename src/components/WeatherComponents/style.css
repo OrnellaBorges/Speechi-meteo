@@ -1,0 +1,14 @@
+.card {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  padding: 2em;
+  border-radius: 30px;
+  max-width: 80%;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+}

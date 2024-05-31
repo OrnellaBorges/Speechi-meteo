@@ -8,16 +8,15 @@ import React, {
 
 import { useGetWeather } from "../hooks/useGetWeather";
 import { CoordType } from "../types/CoordsType";
-import { getRequestCount } from "../api/getWeatherDatas";
+import { WeatherResponse } from "../types/WeatherTypes";
 
 // Définition du type pour le contexte
 type WeatherContextType = {
-  weatherInfos: any;
+  weatherInfos: WeatherResponse | null;
   isLoading: boolean;
   isError: boolean;
   coords?: CoordType;
   error?: boolean;
-  requestApiCount: number;
 };
 
 // Créer le contexte
@@ -26,9 +25,9 @@ const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
 // Créer le fournisseur (provider)
 export const WeatherProvider = ({ children }: { children: ReactNode }) => {
   const weatherData = useGetWeather();
-  const requestApiCount = getRequestCount();
+
   return (
-    <WeatherContext.Provider value={{ ...weatherData, requestApiCount }}>
+    <WeatherContext.Provider value={{ ...weatherData }}>
       {children}
     </WeatherContext.Provider>
   );

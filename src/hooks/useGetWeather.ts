@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
 import { CoordType } from "../types/CoordsType";
+import { WeatherResponse } from "../types/WeatherTypes";
 
 export function useGetWeather() {
-  const [weatherInfos, setWeatherInfos] = useState<any>(null);
+  const [weatherInfos, setWeatherInfos] = useState<WeatherResponse | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const { coords, error } = useClientLocation();
