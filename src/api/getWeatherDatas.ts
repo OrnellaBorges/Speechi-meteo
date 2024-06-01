@@ -27,7 +27,7 @@ export const getWeatherByCoords = async (
 
       const weatherData = response.data;
       console.log("weatherData", weatherData);
-      //creer la clé et stocker les datas de l'api dans cache LS weatherData
+      //creer la clé et stocker les datas de l'api dans cache LS
       localStorage.setItem("cacheWeatherData", JSON.stringify(weatherData));
 
       return weatherData;

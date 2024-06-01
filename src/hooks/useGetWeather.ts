@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
-import { CoordType } from "../types/CoordsType";
+//import { CoordType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 
 export function useGetWeather() {
