@@ -16,9 +16,10 @@ function generateCacheKey(coords: CoordsType): String {
   return cacheKey;
 }
 
+/*
 // fonction verifie si il y a un cache ou pas en fonction de la clé
 
-/* function checkCacheExist(cacheKey: string): boolean {
+ function checkCacheExist(cacheKey: string): boolean {
   const localStorageResponse = localStorage.getItem(cacheKey);
   if (localStorageResponse !== null) {
     console.log("true => le cache existe");
@@ -28,6 +29,7 @@ function generateCacheKey(coords: CoordsType): String {
   return false;
 } */
 
+// Ya un truc dans le cache ???
 function checkCacheDataExist(): boolean {
   if (localStorage.length > 0) {
     return true;
@@ -35,7 +37,14 @@ function checkCacheDataExist(): boolean {
   return false;
 }
 
-//Creation du cache Si on a verifié qu'il n'y a pas de cache
+//Creation du cache Si on a verifié qu'il n'y a pas de cache et qu'on a fetch la data de l'api
+function createCacheDatas(
+  coords: CoordsType,
+  apiResponseValue: WeatherResponse
+) {
+  const key = generateCacheKey(coords); // creation de la Key
+  const cacheValue = apiResponseValue;
+}
 
 // RECUP LES DATAS DU CACHE SI CACHE EXISTE
 
