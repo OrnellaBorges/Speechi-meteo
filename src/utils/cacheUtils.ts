@@ -1,9 +1,8 @@
-import { time, timeStamp } from "console";
 import { CoordsType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 
 type CachedWeatherDatas = {
-  cacheContent: WeatherResponse;
+  cacheValue: WeatherResponse;
   timestamp: number;
 };
 
@@ -11,7 +10,7 @@ type CachedWeatherDatas = {
 const CACHE_EXPIRATION_TIME = 10 * 60 * 1000;
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
-function generateCacheKey(coords: CoordsType): string {
+export function generateCacheKey(coords: CoordsType): string {
   const { latitude, longitude } = coords; // destructuration de l'objet coords
   const cacheKey = `weather_${latitude}_${longitude}`; // creation clé unique de cache
   return cacheKey;
@@ -31,7 +30,7 @@ function generateCacheKey(coords: CoordsType): string {
 } */
 
 // Ya un truc dans le cache ???
-function checkCacheDataExist(): boolean {
+export function checkCacheDataExist(): boolean {
   if (localStorage.length > 0) {
     return true;
   }
@@ -45,7 +44,7 @@ export function createCacheDatas(
 ) {
   const key = generateCacheKey(coords); // creation de la Key
   const cacheValue: CachedWeatherDatas = {
-    cacheContent: apiResponseValue,
+    cacheValue: apiResponseValue,
     timestamp: Date.now(),
   };
   console.log("cacheValue", cacheValue);
@@ -67,10 +66,14 @@ export function getCachedDatas(cacheKey: string): WeatherResponse {
 //Si le Cache existe on regarde si il a expiré ou pas !
 export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   console.log("Is expired ? : ");
-  if (!cachedDatas) return false; // si le cache existe pas
-
   //Sinon recup de timestamp du cache
   const timestamp = cachedDatas.timestamp;
   const currentTime = Date.now(); //recup date actuelle
   return currentTime - timestamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
+}
+
+export function updateCacheIfExpired(coords: CoordsType) {
+  console.log("REMOVE CURRENT CACHE");
+
+  console.log("UPDATE with New");
 }

@@ -17,8 +17,8 @@ export function useGetWeather() {
     setIsLoading(true);
     try {
       const res = await getWeatherByCoords(latitude, longitude);
-      setWeatherInfos(res);
-      console.log("res", res);
+      //setWeatherInfos(res);
+      //console.log("res", res);
       setIsError(false);
     } catch (error) {
       setIsError(true);
