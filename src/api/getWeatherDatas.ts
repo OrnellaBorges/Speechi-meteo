@@ -14,10 +14,8 @@ export const getWeatherByCoords = async (
   longitude: number | null
 ) => {
   //verifier si un ya des elements dans le cache  dans le cache
-  const isCacheInnerStorage = checkCacheDataExist();
-  console.log("isCacheInnerStorage", isCacheInnerStorage);
 
-  if (checkCacheDataExist()) {
+  if (!checkCacheDataExist()) {
     // generer Key
     const coords = { latitude, longitude };
     console.log(" create coords", coords);
