@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
-import { CoordType } from "../types/CoordsType";
+import { CoordsType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 
 export function useGetWeather() {
@@ -13,7 +13,7 @@ export function useGetWeather() {
   const { coords, error } = useClientLocation();
   console.log("coords", coords);
   //ref qui va stocker
-  const lastCoords = useRef<CoordType>({ latitude: null, longitude: null });
+  const lastCoords = useRef<CoordsType>({ latitude: null, longitude: null });
   console.log("lastCoords", lastCoords);
 
   // fonction qui fait le fetch et appel getWeatherByCoords

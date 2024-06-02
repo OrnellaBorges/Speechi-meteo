@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
 import { WeatherResponse } from "../types/WeatherTypes";
-import { CoordType } from "../types/CoordsType";
+import { CoordsType } from "../types/CoordsType";
 
 export function useGetWeather() {
   const [weatherInfos, setWeatherInfos] = useState<WeatherResponse | null>(
@@ -14,7 +14,7 @@ export function useGetWeather() {
 
   const { coords, error } = useClientLocation();
 
-  const coordsRef = useRef<CoordType>({ latitude: null, longitude: null });
+  const coordsRef = useRef<CoordsType>({ latitude: null, longitude: null });
   console.log("coords", coords);
   console.log("coordsRef", coordsRef);
 

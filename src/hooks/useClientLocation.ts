@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { CoordType } from "../types/CoordsType";
+import { CoordsType } from "../types/CoordsType";
 
 export function useClientLocation() {
-  const [coords, setCoords] = useState<CoordType | null>(null);
+  const [coords, setCoords] = useState<CoordsType | null>(null);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {

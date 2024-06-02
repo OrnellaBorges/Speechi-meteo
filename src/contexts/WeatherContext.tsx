@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 import { useGetWeather } from "../hooks/useGetWeather";
-import { CoordType } from "../types/CoordsType";
+import { CoordsType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 
 // Définition du type pour le contexte
@@ -15,7 +15,7 @@ type WeatherContextType = {
   weatherInfos: WeatherResponse | null;
   isLoading: boolean;
   isError: boolean;
-  coords?: CoordType;
+  coords?: CoordsType;
   error?: boolean;
 };
 

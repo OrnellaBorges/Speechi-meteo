@@ -6,13 +6,13 @@ import {
   ReactNode,
 } from "react";
 
-import { CoordType } from "../types/CoordsType";
+import { CoordsType } from "../types/CoordsType";
 import { useClientLocation } from "../hooks/useClientLocation";
 
 //definition du type
 
 type LocationContextType = {
-  coords: CoordType | null;
+  coords: CoordsType | null;
   error: boolean;
 };
 
