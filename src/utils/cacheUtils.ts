@@ -51,10 +51,13 @@ function createCacheDatas(
 //fonction pour voir si le cache est expired
 //Si le Cache existe on regarde si il a expiré ou pas !
 function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
-  if (!cachedDatas) return false;
+  console.log("Is expired ? : ");
+  if (!cachedDatas) return false; // si le cache existe pas
+
+  //Sinon recup de timestamp du cache
   const timestamp = cachedDatas.timestamp;
-  const currentTime = Date.now();
-  return currentTime - timestamp < CACHE_EXPIRATION_TIME;
+  const currentTime = Date.now(); //recup date actuelle
+  return currentTime - timestamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
 }
 
 // fonction qui recup les données du cache avec la cacheKey
