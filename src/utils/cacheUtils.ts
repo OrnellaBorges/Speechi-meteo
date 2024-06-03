@@ -2,15 +2,15 @@ import { CoordsType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 
 type CachedWeatherDatas = {
-  cacheValue: WeatherResponse;
-  timestamp: number;
+  storageValue: WeatherResponse;
+  storageTimestamp: number;
 };
 
 // 10 min expiration du cache
 const CACHE_EXPIRATION_TIME = 10 * 60 * 1000;
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
-export function generateCacheKey(coords: CoordsType): string {
+export function generateKey(coords: CoordsType): string {
   const { latitude, longitude } = coords; // destructuration de l'objet coords
   const cacheKey = `weather_${latitude}_${longitude}`; // creation clé unique de cache
   return cacheKey;
@@ -42,15 +42,17 @@ export function createCacheDatas(
   coords: CoordsType,
   apiResponseValue: WeatherResponse
 ) {
-  const key = generateCacheKey(coords); // creation de la Key
-  const cacheValue: CachedWeatherDatas = {
-    cacheValue: apiResponseValue,
-    timestamp: Date.now(),
-  };
-  console.log("cacheValue", cacheValue);
-  console.log("key", key);
+  //creation de la clé
+  const storageKey = generateKey(coords);
 
-  return localStorage.setItem(key, JSON.stringify(cacheValue));
+  const storageValue: CachedWeatherDatas = {
+    storageValue: apiResponseValue,
+    storageTimestamp: Date.now(),
+  };
+  console.log("storageValue", storageValue);
+  console.log("storageKey", storageKey);
+
+  return localStorage.setItem(storageKey, JSON.stringify(storageValue));
 }
 
 // RECUP LES DATAS DU CACHE SI CACHE EXISTE
@@ -67,9 +69,9 @@ export function getCachedDatas(cacheKey: string): WeatherResponse {
 export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   console.log("Is expired ? : ");
   //Sinon recup de timestamp du cache
-  const timestamp = cachedDatas.timestamp;
+  const storageTimeStamp = cachedDatas.storageTimestamp;
   const currentTime = Date.now(); //recup date actuelle
-  return currentTime - timestamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
+  return currentTime - storageTimeStamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
 }
 
 export function updateCacheIfExpired(coords: CoordsType) {

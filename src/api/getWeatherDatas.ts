@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   checkCacheDataExist,
   getCachedDatas,
-  generateCacheKey,
+  generateKey,
   isCacheExpired,
 } from "../utils/cacheUtils";
 
@@ -13,16 +13,28 @@ export const getWeatherByCoords = async (
   latitude: number | null,
   longitude: number | null
 ) => {
-  //verifier si un ya des elements dans le cache  dans le cache
+  //verifier si un ya des elements dans le cache avant tout!
 
   if (!checkCacheDataExist()) {
-    // generer Key
+    // retourn true ou false
+    console.log("Fetching new data from API");
     const coords = { latitude, longitude };
     console.log(" create coords", coords);
-    generateCacheKey(coords);
+
+    try {
+      /* //=> executer requête vers l'API
+      const response = await axios.get(`${urlWeather}`, {
+        params: {
+          lat: latitude,
+          lon: longitude,
+          appid: API_KEY,
+          units: "metric",
+        },
+      }); */
+    } catch {}
 
     // creer et stocker le cache
   } else {
-    console.log("POPO");
+    console.log("LS cache exist ! ");
   }
 };
