@@ -39,11 +39,11 @@ export function checkCacheDataExist(): boolean {
 
 //Creation du cache Si on a verifié qu'il n'y a pas de cache et qu'on a fetch la data de l'api
 export function createCacheDatas(
-  coords: CoordsType,
+  //coords?: CoordsType,
+  key: string,
   apiResponseValue: WeatherResponse
 ) {
-  //creation de la clé
-  const storageKey = generateKey(coords);
+  const storageKey = key;
 
   const storageValue: CachedWeatherDatas = {
     storageValue: apiResponseValue,
@@ -51,19 +51,35 @@ export function createCacheDatas(
   };
   console.log("storageValue", storageValue);
   console.log("storageKey", storageKey);
-
-  return localStorage.setItem(storageKey, JSON.stringify(storageValue));
+  const stockInnerStorage = localStorage.setItem(
+    storageKey,
+    JSON.stringify(storageValue)
+  );
+  console.log("stocked in localStorage!");
+  return stockInnerStorage;
 }
 
 // RECUP LES DATAS DU CACHE SI CACHE EXISTE
 
 // fonction qui recup les données du cache avec la cacheKey
-export function getCachedDatas(cacheKey: string): WeatherResponse {
-  const cachedDatas = localStorage.getItem(cacheKey)!; // ! dit a TS que c'est sure que ce sera non null
+/* export function getCachedDatas(key: string): WeatherResponse {
+  const cachedDatas = localStorage.getItem(key)!; // ! dit a TS que c'est sure que ce sera non null
+  console.log("cachedDatas", cachedDatas);
   const parsedDatas = JSON.parse(cachedDatas); // je convertit la data pour la lire en tableau d'objet par Js
+  console.log("parsedDatas", parsedDatas);
   return parsedDatas;
-}
+} */
 
+export function getCachedDatas(key: string) {
+  const cachedDatas = localStorage.getItem(key);
+  console.log(`getCachedDatas(${key}):`, cachedDatas);
+  if (cachedDatas) {
+    const parsedDatas = JSON.parse(cachedDatas);
+    console.log("parsedDatas", parsedDatas);
+    return parsedDatas;
+  }
+  return null;
+}
 //fonction pour voir si le cache est expired
 //Si le Cache existe on regarde si il a expiré ou pas !
 export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
