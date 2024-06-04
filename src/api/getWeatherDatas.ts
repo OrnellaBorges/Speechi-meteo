@@ -43,22 +43,21 @@ export const getWeatherByCoords = async (
     }
   } else {
     console.log("LS cache exist ! ");
-
     console.log("key ===>", key);
+
+    // recup la liste de key das le LS
     const cachedStorageKeys = Object.keys(localStorage);
     console.log("cachedStorageKeys", cachedStorageKeys);
+
+    // check si la key est différente de celle du LS
     const isDifferentKey = !cachedStorageKeys.includes(key);
     console.log("isDifferentKey", isDifferentKey);
 
-    //recup les données du storage
-    //const datasFromStorage = getCachedDatas(key);
-    //console.log("datasFromStorage", datasFromStorage);
+    // SI key différente OU Key idem mais Expiré
 
-    //const cachedData = getCachedDatas(key);
-    //console.log("cachedData from storage:", cachedData);
-
-    /*  if(isCacheExpired(datasFromStorage)){
-    console.log("storage expired")
-    } */
+    //ALORS je supprime l'element du le locaLStorage
+    // creation nouvelle clé
+    // creation des nouvelles data
+    // envoyer la nouvelle data dans le LS
   }
 };

@@ -43,14 +43,15 @@ export function createCacheDatas(
   key: string,
   apiResponseValue: WeatherResponse
 ) {
+  //creation des datas a envoyer dans le storage
   const storageKey = key;
-
   const storageValue: CachedWeatherDatas = {
     storageValue: apiResponseValue,
     storageTimestamp: Date.now(),
   };
-  console.log("storageValue", storageValue);
   console.log("storageKey", storageKey);
+  console.log("storageValue", storageValue);
+
   const stockInnerStorage = localStorage.setItem(
     storageKey,
     JSON.stringify(storageValue)
