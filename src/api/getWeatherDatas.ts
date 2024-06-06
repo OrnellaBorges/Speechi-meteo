@@ -6,15 +6,13 @@ import {
   isCacheExpired,
   createCacheDatas,
 } from "../utils/cacheUtils";
+import { CoordsType } from "../types/CoordsType";
 
 const urlWeather = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "acf1e1df9b83f7767c986cbc7e90a553";
 
-export const getWeatherByCoords = async (
-  latitude: number | null,
-  longitude: number | null
-) => {
-  const coords = { latitude, longitude };
+export const getWeatherByCoords = async (coords: CoordsType) => {
+  const { latitude, longitude } = coords;
   const key = generateKey(coords);
   console.log("Generated key:", key);
 
@@ -53,7 +51,13 @@ export const getWeatherByCoords = async (
     const isDifferentKey = !cachedStorageKeys.includes(key);
     console.log("isDifferentKey", isDifferentKey);
 
+    const locaLStorageData = getCachedDatas(key);
+    console.log("locaLStorageData", locaLStorageData);
+
     // SI key différente OU Key idem mais Expiré
+    /* if(isDifferentKey || isCacheExpired()){
+        console.log("expired ou key differente")
+    } */
 
     //ALORS je supprime l'element du le locaLStorage
     // creation nouvelle clé

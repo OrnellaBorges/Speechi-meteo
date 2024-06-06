@@ -73,10 +73,10 @@ export function createCacheDatas(
 
 export function getCachedDatas(key: string) {
   const cachedDatas = localStorage.getItem(key);
-  console.log(`getCachedDatas(${key}):`, cachedDatas);
+  //console.log(`getCachedDatas(${key}):`, cachedDatas);
   if (cachedDatas) {
     const parsedDatas = JSON.parse(cachedDatas);
-    console.log("parsedDatas", parsedDatas);
+    // console.log("parsedDatas", parsedDatas);
     return parsedDatas;
   }
   return null;
@@ -84,10 +84,12 @@ export function getCachedDatas(key: string) {
 //fonction pour voir si le cache est expired
 //Si le Cache existe on regarde si il a expiré ou pas !
 export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
-  console.log("Is expired ? : ");
   //Sinon recup de timestamp du cache
   const storageTimeStamp = cachedDatas.storageTimestamp;
+  console.log("storageTimeStamp", storageTimeStamp);
+
   const currentTime = Date.now(); //recup date actuelle
+  console.log("currentTime", currentTime);
   return currentTime - storageTimeStamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
 }
 

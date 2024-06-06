@@ -3,6 +3,7 @@ import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
 //import { CoordType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
+import { CoordsType } from "../types/CoordsType";
 
 export function useGetWeather() {
   const [weatherInfos, setWeatherInfos] = useState<WeatherResponse | null>(
@@ -13,10 +14,10 @@ export function useGetWeather() {
   const { coords, error } = useClientLocation();
 
   // fonction qui fait le fetch et appel getWeatherByCoords
-  const fetchWeather = async (latitude: number, longitude: number) => {
+  const fetchWeather = async (coords: CoordsType) => {
     setIsLoading(true);
     try {
-      const res = await getWeatherByCoords(latitude, longitude);
+      const res = await getWeatherByCoords(coords);
       //setWeatherInfos(res);
       //console.log("res", res);
       setIsError(false);
@@ -29,13 +30,14 @@ export function useGetWeather() {
 
   //UE se déclanche en fonction du changement de coord
   useEffect(() => {
+    console.log("UE = coordsFromhook ", coords);
     // condition pour executer le fetch:
     if (coords && coords.latitude !== null && coords.longitude !== null) {
       // destructuration de l'objet coord importé de useClientLocation
       const { latitude, longitude } = coords;
 
       // passer latitude longitude dans la fonction qui fait le fetch
-      fetchWeather(latitude, longitude);
+      fetchWeather(coords);
     }
   }, [coords]);
 

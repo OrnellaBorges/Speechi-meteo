@@ -12,8 +12,8 @@ export function useClientLocation() {
     }
 
     const isSuccess = (position: GeolocationPosition) => {
-      console.log("position", position);
-      console.warn("Success");
+      console.log(" Success position", position.coords);
+
       setCoords({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
@@ -27,6 +27,7 @@ export function useClientLocation() {
     //navigator.geolocation.getCurrentPosition(isSuccess, isError);
 
     const watchCoord = navigator.geolocation.watchPosition(isSuccess, isError);
+    console.warn("WATCHING :", watchCoord);
 
     return () => navigator.geolocation.clearWatch(watchCoord);
   }, []);
