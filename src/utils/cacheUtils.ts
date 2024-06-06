@@ -7,7 +7,7 @@ type CachedWeatherDatas = {
 };
 
 // 10 min expiration du cache
-const CACHE_EXPIRATION_TIME = 10 * 60 * 1000;
+const CACHE_EXPIRATION_TIME = 2 * 60 * 1000;
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
 export function generateKey(coords: CoordsType): string {
@@ -39,12 +39,11 @@ export function checkCacheDataExist(): boolean {
 
 //Creation du cache Si on a verifié qu'il n'y a pas de cache et qu'on a fetch la data de l'api
 export function createCacheDatas(
-  //coords?: CoordsType,
-  key: string,
+  coords: CoordsType,
   apiResponseValue: WeatherResponse
 ) {
   //creation des datas a envoyer dans le storage
-  const storageKey = key;
+  const storageKey = generateKey(coords);
   const storageValue: CachedWeatherDatas = {
     storageValue: apiResponseValue,
     storageTimestamp: Date.now(),
@@ -83,14 +82,25 @@ export function getCachedDatas(key: string) {
 }
 //fonction pour voir si le cache est expired
 //Si le Cache existe on regarde si il a expiré ou pas !
-export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
+/* export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   //Sinon recup de timestamp du cache
   const storageTimeStamp = cachedDatas.storageTimestamp;
   console.log("storageTimeStamp", storageTimeStamp);
 
   const currentTime = Date.now(); //recup date actuelle
   console.log("currentTime", currentTime);
-  return currentTime - storageTimeStamp < CACHE_EXPIRATION_TIME; // verif si c'est expiré
+  const calcul = currentTime - storageTimeStamp < CACHE_EXPIRATION_TIME;
+  return calcul;
+}
+ */
+export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
+  const storageTimeStamp = cachedDatas.storageTimestamp;
+  console.log("storageTimeStamp", storageTimeStamp);
+  const currentTime = Date.now(); // Recupérer la date actuelle
+  console.log("currentTime", currentTime);
+  const timeElapsed = currentTime - storageTimeStamp; // Calculer le temps écoulé depuis le dernier enregistrement dans le cache
+  console.log("timeElapsed", timeElapsed);
+  return timeElapsed >= CACHE_EXPIRATION_TIME; // Vérifier si le temps écoulé dépasse la durée de validité du cache
 }
 
 export function updateCacheIfExpired(coords: CoordsType) {
