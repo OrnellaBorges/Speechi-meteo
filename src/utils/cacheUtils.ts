@@ -7,7 +7,7 @@ type CachedWeatherDatas = {
 };
 
 // 10 min expiration du cache
-const CACHE_EXPIRATION_TIME = 2 * 60 * 1000;
+const CACHE_EXPIRATION_TIME = 10 * 60 * 1000; //= 10min
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
 export function generateKey(coords: CoordsType): string {

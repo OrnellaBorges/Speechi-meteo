@@ -26,7 +26,11 @@ export function useClientLocation() {
 
     //navigator.geolocation.getCurrentPosition(isSuccess, isError);
 
-    const watchCoord = navigator.geolocation.watchPosition(isSuccess, isError);
+    const watchCoord = navigator.geolocation.watchPosition(isSuccess, isError, {
+      enableHighAccuracy: true,
+      maximumAge: 0,
+      timeout: 5000,
+    });
     console.warn("WATCHING :", watchCoord);
 
     return () => navigator.geolocation.clearWatch(watchCoord);

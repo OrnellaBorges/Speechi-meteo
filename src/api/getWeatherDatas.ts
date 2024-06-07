@@ -15,9 +15,6 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
   // SI LS existe !
   if (!checkCacheDataExist()) {
     // Création d'une clé unique
-    const key = generateKey(coords);
-    console.log("Generated key:", key);
-
     try {
       // Exécuter la requête vers l'API
       const response = await axios.get(`${urlWeather}`, {
@@ -35,18 +32,29 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
     } catch {
       throw new Error("Failed to fetch weather data");
     }
+  }
+  console.log("LS cache exist !");
+
+  // Récupérer la première clé du localStorage
+  const currentStorageKeys = Object.keys(localStorage);
+  const key = currentStorageKeys[0];
+  console.log("key", key);
+
+  const currentStorageData = getCachedDatas(key);
+  console.log("localStorageData", currentStorageData);
+
+  const isExpired = isCacheExpired(currentStorageData);
+  console.log("isExpired", isExpired);
+
+  if (!isExpired) {
+    console.log("not expired");
+    //utiliser le cache
+    const useStorageDatas = currentStorageData.storageValue;
+
+    console.log("useStorageDatas", useStorageDatas);
+    return useStorageDatas;
   } else {
-    console.log("LS cache exist !");
-
-    // Récupérer la première clé du localStorage
-    const currentStorageKeys = Object.keys(localStorage);
-    const key = currentStorageKeys[0];
-    console.log("key", key);
-
-    const currentStorageData = getCachedDatas(key);
-    console.log("localStorageData", currentStorageData);
-
-    const isExpired = isCacheExpired(currentStorageData);
-    console.log("isExpired", isExpired);
+    console.log("Expired recall API");
+    // refaire le call Api
   }
 };
