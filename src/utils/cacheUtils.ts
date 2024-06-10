@@ -7,7 +7,7 @@ type CachedWeatherDatas = {
 };
 
 // 10 min expiration du cache
-const CACHE_EXPIRATION_TIME = 2 * 60 * 1000; //= 10min
+const CACHE_EXPIRATION_TIME = 2 * 60 * 1000; //= 2min
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
 export function generateKey(coords: CoordsType): string {
@@ -15,19 +15,6 @@ export function generateKey(coords: CoordsType): string {
   const cacheKey = `weather_${latitude}_${longitude}`; // creation clé unique de cache
   return cacheKey;
 }
-
-/*
-// fonction verifie si il y a un cache ou pas en fonction de la clé
-
- function checkCacheExist(cacheKey: string): boolean {
-  const localStorageResponse = localStorage.getItem(cacheKey);
-  if (localStorageResponse !== null) {
-    console.log("true => le cache existe");
-    return true;
-  }
-  console.log("key does not exist");
-  return false;
-} */
 
 // Ya un truc dans le cache ???
 export function checkCacheDataExist(): boolean {
@@ -104,6 +91,10 @@ export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   const timeElapsed = currentTime - storageTimeStamp; // Calculer le temps écoulé depuis le dernier enregistrement dans le cache
   console.log("timeElapsed", timeElapsed);
   return timeElapsed >= CACHE_EXPIRATION_TIME; // Vérifier si le temps écoulé dépasse la durée de validité du cache
+}
+
+export function removeCache() {
+  console.log("REMOVE !");
 }
 
 /* export function updateCacheIfExpired(coords: CoordsType) {

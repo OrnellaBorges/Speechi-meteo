@@ -48,7 +48,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
 
   if (!isExpired) {
     //utiliser le LS si pas expiré
-    console.log("not expired use cache!");
+    console.log("not expired use cache!", key);
 
     // recup des datas du storage
     const useStorageDatas = currentStorageData.storageValue;
@@ -56,9 +56,32 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
     return useStorageDatas;
   } else {
     console.log("Expired recall API");
-    // refaire le call Api
+
     // Effacer les datas du LS
-    // refaire createCacheData() => stockage
-    // return le resultat du fetch
+    console.log("REMOVE LS");
+    localStorage.clear();
+
+    // refaire le call Api
+    try {
+      console.log("RECALLING");
+      // Exécuter la requête vers l'API
+      const response = await axios.get(`${urlWeather}`, {
+        params: {
+          lat: coords.latitude,
+          lon: coords.longitude,
+          appid: API_KEY,
+          units: "metric",
+        },
+      });
+
+      // refaire createCacheData() => stockage
+
+      createCacheDatas(coords, response.data); // stockage !
+
+      // return le resultat du fetch
+      return response.data;
+    } catch {
+      throw new Error("Failed to fetch weather data");
+    }
   }
 };
