@@ -63,7 +63,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
 
     // refaire le call Api
     try {
-      console.log("RECALLING");
+      console.log("RECALLING API");
       // Exécuter la requête vers l'API
       const response = await axios.get(`${urlWeather}`, {
         params: {
@@ -79,6 +79,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
       createCacheDatas(coords, response.data); // stockage !
 
       // return le resultat du fetch
+      console.log("response.data", response.data);
       return response.data;
     } catch {
       throw new Error("Failed to fetch weather data");
