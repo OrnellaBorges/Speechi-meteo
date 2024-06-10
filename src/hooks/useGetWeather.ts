@@ -30,11 +30,10 @@ export function useGetWeather() {
 
   //UE se déclanche en fonction du changement de coord
   useEffect(() => {
-    console.log("UE = coordsFromhook ", coords);
+    console.warn("UE = HOOK - GETWEATHER", coords);
     // condition pour executer le fetch:
     if (coords && coords.latitude !== null && coords.longitude !== null) {
       // destructuration de l'objet coord importé de useClientLocation
-      const { latitude, longitude } = coords;
 
       // passer latitude longitude dans la fonction qui fait le fetch
       fetchWeather(coords);

@@ -5,15 +5,18 @@ type CurrentWeatherProps = {
 };
 export default function CurrentWeather({ weatherInfos }: CurrentWeatherProps) {
   return (
-    <>
-      <h2 className="weatherCity">{weatherInfos.name}</h2>
-      <p className="weatherDate">{new Date().toLocaleDateString()}</p>
+    <div
+      className="currentWeather"
+      style={{ border: "3px solid blue", width: "100%" }}
+    >
+      <h2 className="cityName">{weatherInfos.name}</h2>
+      <p className="date">{new Date().toLocaleDateString()}</p>
       <p className="temperature">{weatherInfos.main.temp}°C</p>
       <img
         src={`http://openweathermap.org/img/wn/${weatherInfos.weather[0].icon}.png`}
         alt={weatherInfos.weather[0].description}
       />
       <p>{weatherInfos.weather[0].description}</p>
-    </>
+    </div>
   );
 }

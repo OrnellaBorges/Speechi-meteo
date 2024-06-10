@@ -7,7 +7,7 @@ type CachedWeatherDatas = {
 };
 
 // 10 min expiration du cache
-const CACHE_EXPIRATION_TIME = 10 * 60 * 1000; //= 10min
+const CACHE_EXPIRATION_TIME = 2 * 60 * 1000; //= 10min
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
 export function generateKey(coords: CoordsType): string {
@@ -43,19 +43,22 @@ export function createCacheDatas(
   apiResponseValue: WeatherResponse
 ) {
   //creation des datas a envoyer dans le storage
+  console.log("CREATE CACHE !");
   const storageKey = generateKey(coords);
+  console.log("KEY CREATED!");
   const storageValue: CachedWeatherDatas = {
     storageValue: apiResponseValue,
     storageTimestamp: Date.now(),
   };
-  console.log("storageKey", storageKey);
-  console.log("storageValue", storageValue);
+  //console.log("storageKey", storageKey);
+  //console.log("storageValue", storageValue);
 
+  console.log("STOCKAGE => LS");
   const stockInnerStorage = localStorage.setItem(
     storageKey,
     JSON.stringify(storageValue)
   );
-  console.log("stocked in localStorage!");
+  console.log("STOCKED!");
   return stockInnerStorage;
 }
 
@@ -103,8 +106,8 @@ export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   return timeElapsed >= CACHE_EXPIRATION_TIME; // Vérifier si le temps écoulé dépasse la durée de validité du cache
 }
 
-export function updateCacheIfExpired(coords: CoordsType) {
+/* export function updateCacheIfExpired(coords: CoordsType) {
   console.log("REMOVE CURRENT CACHE");
 
   console.log("UPDATE with New");
-}
+} */
