@@ -1,4 +1,6 @@
 import axios from "axios";
+import { WEATHER_API_KEY } from "../config";
+
 import {
   checkCacheDataExist,
   getCachedDatas,
@@ -9,7 +11,6 @@ import {
 import { CoordsType } from "../types/CoordsType";
 
 const urlWeather = "https://api.openweathermap.org/data/2.5/weather";
-const API_KEY = "acf1e1df9b83f7767c986cbc7e90a553";
 
 export const getWeatherByCoords = async (coords: CoordsType) => {
   // SI LS existe pas !
@@ -20,7 +21,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
         params: {
           lat: coords.latitude,
           lon: coords.longitude,
-          appid: API_KEY,
+          appid: WEATHER_API_KEY,
           units: "metric",
         },
       });
@@ -28,12 +29,13 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
       // Créer les datas pour le LS et stocker dans le localStorage
       createCacheDatas(coords, response.data); // stockage !
       return response.data;
-    } catch {
+    } catch (error) {
+      console.log("error", error);
       throw new Error("Failed to fetch weather data");
     }
   }
 
-  console.log("LS cache exist !");
+  console.log("LS exist !");
 
   // Récupérer la première clé du localStorage
   const currentStorageKeys = Object.keys(localStorage);
@@ -56,7 +58,6 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
     return useStorageDatas;
   } else {
     console.log("Expired recall API");
-
     // Effacer les datas du LS
     console.log("REMOVE LS");
     localStorage.clear();
@@ -69,7 +70,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
         params: {
           lat: coords.latitude,
           lon: coords.longitude,
-          appid: API_KEY,
+          appid: WEATHER_API_KEY,
           units: "metric",
         },
       });
@@ -78,7 +79,7 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
 
       createCacheDatas(coords, response.data); // stockage !
 
-      // return le resultat du fetch
+      // return le resultat de la nouvelle request
       console.log("response.data", response.data);
       return response.data;
     } catch {

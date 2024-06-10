@@ -18,8 +18,8 @@ export function useGetWeather() {
     setIsLoading(true);
     try {
       const res = await getWeatherByCoords(coords);
-      //setWeatherInfos(res);
-      //console.log("res", res);
+      setWeatherInfos(res);
+      console.log("res", res);
       setIsError(false);
     } catch (error) {
       setIsError(true);
@@ -33,9 +33,7 @@ export function useGetWeather() {
     console.warn("UE = HOOK - GETWEATHER", coords);
     // condition pour executer le fetch:
     if (coords && coords.latitude !== null && coords.longitude !== null) {
-      // destructuration de l'objet coord importé de useClientLocation
-
-      // passer latitude longitude dans la fonction qui fait le fetch
+      // passer coords dans la fonction qui fait le fetch
       fetchWeather(coords);
     }
   }, [coords]);

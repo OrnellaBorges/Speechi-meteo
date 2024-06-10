@@ -85,20 +85,14 @@ export function getCachedDatas(key: string) {
  */
 export function isCacheExpired(cachedDatas: CachedWeatherDatas): boolean {
   const storageTimeStamp = cachedDatas.storageTimestamp;
-  console.log("storageTimeStamp", storageTimeStamp);
+  //console.log("storageTimeStamp", storageTimeStamp);
   const currentTime = Date.now(); // Recupérer la date actuelle
-  console.log("currentTime", currentTime);
+  //console.log("currentTime", currentTime);
   const timeElapsed = currentTime - storageTimeStamp; // Calculer le temps écoulé depuis le dernier enregistrement dans le cache
-  console.log("timeElapsed", timeElapsed);
+  //console.log("timeElapsed", timeElapsed);
   return timeElapsed >= CACHE_EXPIRATION_TIME; // Vérifier si le temps écoulé dépasse la durée de validité du cache
 }
 
 export function removeCache() {
   console.log("REMOVE !");
 }
-
-/* export function updateCacheIfExpired(coords: CoordsType) {
-  console.log("REMOVE CURRENT CACHE");
-
-  console.log("UPDATE with New");
-} */
