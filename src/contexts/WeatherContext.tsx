@@ -6,9 +6,10 @@ import React, {
   useEffect,
 } from "react";
 
-import { useGetWeather } from "../hooks/useGetWeather";
 import { CoordsType } from "../types/CoordsType";
 import { Coords, WeatherResponse } from "../types/WeatherTypes";
+
+import { useGetWeather } from "../hooks/useGetWeather";
 
 // Définition du type pour le contexte
 type WeatherContextType = {

@@ -1,12 +1,1 @@
-.card {
-  background: rgba(0, 0, 0, 0.3);
-  /* backdrop-filter: blur(11.5px);
-  -webkit-backdrop-filter: blur(11.5px); */
-  /* border-radius: 30px; */
-  border: 1px solid transparent;
-  color: white;
 
-  width: 100%;
-  text-align: center;
-  margin: 0 auto;
-}

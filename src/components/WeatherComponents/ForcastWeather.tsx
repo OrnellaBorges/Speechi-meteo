@@ -1,7 +1,3 @@
-import React from "react";
-
-//import { IconName } from "react-icons/wi";
-
 import { WiDaySunny } from "react-icons/wi";
 
 export default function ForcastWeather() {

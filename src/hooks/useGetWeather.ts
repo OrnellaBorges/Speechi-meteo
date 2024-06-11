@@ -12,9 +12,10 @@ export function useGetWeather() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const { coords, errorBrowserLocation } = useClientLocation();
-  const [storageValue, setStorageValue] = useState<WeatherResponse | null>(
+  const [cachedWeather, setCachedWeather] = useState<WeatherResponse | null>(
     null
   );
+
   // fonction qui fait le fetch et appel getWeatherByCoords
   const fetchWeather = async (coords: CoordsType) => {
     setIsLoading(true);
@@ -35,13 +36,12 @@ export function useGetWeather() {
     console.warn("UE = HOOK - GETWEATHER");
     // condition pour executer le fetch:
     if (coords && coords.latitude !== null && coords.longitude !== null) {
-      // passer coords dans la fonction qui fait le fetch
       fetchWeather(coords);
     }
   }, [coords]);
 
   return {
-    weatherInfos,
+    weatherInfos: weatherInfos || cachedWeather,
     isLoading,
     isError,
     coords,

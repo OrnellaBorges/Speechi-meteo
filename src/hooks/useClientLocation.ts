@@ -23,9 +23,6 @@ export function useClientLocation() {
       return;
     }
 
-    /*  let lastUpdateTime = 0;
-    const debounceTime = 10000; // 10 seconds */
-
     const isSuccess = (position: GeolocationPosition) => {
       console.log("WATCHING A CHANGE");
       console.log(" SUCCESS! TIME 10S watchCoord", position.coords);

@@ -5,10 +5,7 @@ type CurrentWeatherProps = {
 };
 export default function CurrentWeather({ weatherInfos }: CurrentWeatherProps) {
   return (
-    <div
-      className="currentWeather"
-      style={{ border: "3px solid blue", width: "100%" }}
-    >
+    <div className="currentWeather">
       {/* <h2 className="cityName">{weatherInfos.name}</h2> */}
       <h3 className="cardTitle" style={{ marginBottom: "1rem" }}>
         Current Weather{" "}

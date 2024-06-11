@@ -2,22 +2,30 @@ import CurrentWeather from "../components/WeatherComponents/CurrentWeather";
 import CurrentWeatherDetails from "../components/WeatherComponents/CurrentWeatherDetails";
 import ForcastWeather from "../components/WeatherComponents/ForcastWeather";
 import WeatherCard from "../components/WeatherComponents/WeatherCard";
-import { useWeather } from "../contexts/WeatherContext";
+import { useGetWeather } from "../contexts/WeatherContext";
 
 export function Weather() {
   const { weatherInfos, isLoading, isError, errorBrowserLocation } =
-    useWeather();
+    useGetWeather();
+
+  // Afficher le message de chargement en premier
+  if (isLoading) {
+    return <p>Loading...please wait a few moments</p>;
+  }
+
+  // Afficher les messages d'erreur s'il y a une erreur de localisation et aucune donnée météo
+  if (errorBrowserLocation && !weatherInfos) {
+    return <p>Error Location</p>;
+  }
+
+  if (isError) {
+    return <p>Error classique</p>;
+  }
 
   return (
     <>
-      {isLoading && <p>Loading...please wait a few moment</p>}
-      {errorBrowserLocation && <p>ERROR LOCATION</p>}
-      {isError && <p>{isError}</p>}
       {weatherInfos && (
-        <section
-          className="weatherContainer"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
+        <section className="weatherContainer">
           <WeatherCard>
             <CurrentWeather weatherInfos={weatherInfos} />
             <CurrentWeatherDetails />
