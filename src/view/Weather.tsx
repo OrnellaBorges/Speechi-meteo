@@ -7,7 +7,7 @@ export function Weather() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p>Loading...please wait a few moment</p>}
       {error && <p>{error}</p>}
       {isError && <p>{isError}</p>}
       {weatherInfos && (

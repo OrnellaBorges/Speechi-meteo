@@ -4,7 +4,6 @@ import { WEATHER_API_KEY } from "../config";
 import {
   checkCacheDataExist,
   getCachedDatas,
-  generateKey,
   isCacheExpired,
   createCacheDatas,
 } from "../utils/cacheUtils";

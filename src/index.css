@@ -1,6 +1,22 @@
 #root {
   border: 5px solid red;
   height: 100vh;
+  /* overflow: scroll; */
+  /*  overflow: hidden; */
+}
+
+/*Reset CSS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*Reset CSS*/
+
+/* Supprimez les marges par défaut du body et du html */
+html,
+body {
+  height: 100%;
 }
 
 body {

@@ -13,7 +13,7 @@ import { useClientLocation } from "../hooks/useClientLocation";
 
 type LocationContextType = {
   coords: CoordsType | null;
-  error: boolean;
+  errorBrowserLocation: boolean;
 };
 
 //creer le context
@@ -22,9 +22,9 @@ const LocationContext = createContext<LocationContextType | null>(null);
 //Creer le fournisseur = provider
 
 export const LocationProvider = ({ children }: { children: ReactNode }) => {
-  const { coords, error } = useClientLocation();
+  const { coords, errorBrowserLocation } = useClientLocation();
   return (
-    <LocationContext.Provider value={{ coords, error }}>
+    <LocationContext.Provider value={{ coords, errorBrowserLocation }}>
       {children}
     </LocationContext.Provider>
   );

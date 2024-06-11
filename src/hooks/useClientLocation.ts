@@ -12,13 +12,14 @@ import { CoordsType } from "../types/CoordsType";
 
 export function useClientLocation() {
   const [coords, setCoords] = useState<CoordsType | null>(null);
-  const [error, setError] = useState<boolean>(false);
+  const [errorBrowserLocation, setErrorBrowserLocation] =
+    useState<boolean>(false);
   const [successCount, setSuccessCount] = useState<number>(0);
 
   useEffect(() => {
     console.warn("UE-LOCATION");
     if (!("geolocation" in navigator)) {
-      setError(true);
+      setErrorBrowserLocation(true);
       return;
     }
 
@@ -51,7 +52,7 @@ export function useClientLocation() {
 
     const isError = () => {
       console.log("Geolocation is not available in this browser.");
-      setError(true);
+      setErrorBrowserLocation(true);
     };
 
     //navigator.geolocation.getCurrentPosition(isSuccess, isError);
@@ -67,6 +68,6 @@ export function useClientLocation() {
 
   return {
     coords,
-    error,
+    errorBrowserLocation,
   };
 }

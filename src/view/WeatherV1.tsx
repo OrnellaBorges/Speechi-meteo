@@ -2,14 +2,14 @@ import { useGetWeather } from "../hooks/useGetWeather";
 import { useLocation } from "../contexts/LocationContext";
 
 export function Weather() {
-  const { coords, error } = useLocation();
+  const { coords, errorBrowserLocation } = useLocation();
   const { weatherInfos, isLoading, isError } = useGetWeather();
 
   console.log("datas =>>", weatherInfos);
   return (
     <>
       {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {errorBrowserLocation && <p>{errorBrowserLocation}</p>}
       {weatherInfos && (
         <div className="weatherContainer">
           <h2 className="weatherCity">{weatherInfos.name}</h2>
