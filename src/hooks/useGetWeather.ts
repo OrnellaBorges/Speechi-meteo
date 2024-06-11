@@ -44,6 +44,7 @@ export function useGetWeather() {
     weatherInfos,
     isLoading,
     isError,
+    coords,
     errorBrowserLocation,
   };
 }

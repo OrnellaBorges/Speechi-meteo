@@ -15,14 +15,6 @@ function App() {
           <Weather />
         </Layout>
       </WeatherProvider>
-
-      {/* <>
-      <LocationProvider>
-        <Layout>
-          <Weather />
-        </Layout>
-      </LocationProvider>
-    </> */}
     </>
   );
 }

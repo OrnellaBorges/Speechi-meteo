@@ -10,16 +10,20 @@ export default function CurrentWeather({ weatherInfos }: CurrentWeatherProps) {
       style={{ border: "3px solid blue", width: "100%" }}
     >
       {/* <h2 className="cityName">{weatherInfos.name}</h2> */}
-      <h3 className="title">Current Weather </h3>
+      <h3 className="cardTitle" style={{ marginBottom: "1rem" }}>
+        Current Weather{" "}
+      </h3>
       <p className="date">{new Date().toLocaleDateString()}</p>
-      <p className="temperature">{weatherInfos.main.temp}°C</p>
+      <p className="temperature" style={{ fontSize: "3rem" }}>
+        {Math.round(weatherInfos.main.temp)}°C
+      </p>
       <div>
         <img
           src={`http://openweathermap.org/img/wn/${weatherInfos.weather[0].icon}.png`}
           alt={weatherInfos.weather[0].description}
         />
-        <p>{weatherInfos.weather[0].description}</p>
       </div>
+      <p className="description">{weatherInfos.weather[0].description}</p>
     </div>
   );
 }

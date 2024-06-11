@@ -28,7 +28,7 @@ export type Sys = {
   sunset: number;
 };
 
-export type Coord = {
+export type Coords = {
   lon: number;
   lat: number;
 };
@@ -41,7 +41,7 @@ export type Weather = {
 };
 
 export type WeatherResponse = {
-  coord: Coord;
+  coord: Coords;
   weather: Weather[];
   main: Main;
   wind: Wind;

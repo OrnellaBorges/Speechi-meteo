@@ -8,15 +8,15 @@ import React, {
 
 import { useGetWeather } from "../hooks/useGetWeather";
 import { CoordsType } from "../types/CoordsType";
-import { WeatherResponse } from "../types/WeatherTypes";
+import { Coords, WeatherResponse } from "../types/WeatherTypes";
 
 // Définition du type pour le contexte
 type WeatherContextType = {
   weatherInfos: WeatherResponse | null;
   isLoading: boolean;
   isError: boolean;
-  coords?: CoordsType;
-  error?: boolean;
+  coords: CoordsType | null;
+  errorBrowserLocation: boolean;
 };
 
 // Créer le contexte
