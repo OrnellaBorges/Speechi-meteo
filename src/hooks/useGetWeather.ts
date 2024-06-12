@@ -4,20 +4,23 @@ import { useClientLocation } from "./useClientLocation";
 //import { CoordType } from "../types/CoordsType";
 import { WeatherResponse } from "../types/WeatherTypes";
 import { CoordsType } from "../types/CoordsType";
+import { getCachedDatas } from "../utils/cacheUtils";
 
 export function useGetWeather() {
+  const { coords, errorBrowserLocation } = useClientLocation();
   const [weatherInfos, setWeatherInfos] = useState<WeatherResponse | null>(
     null
   );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const { coords, errorBrowserLocation } = useClientLocation();
+
   const [cachedWeather, setCachedWeather] = useState<WeatherResponse | null>(
     null
   );
 
   // fonction qui fait le fetch et appel getWeatherByCoords
   const fetchWeather = async (coords: CoordsType) => {
+    console.log("fetching");
     setIsLoading(true);
     try {
       const res = await getWeatherByCoords(coords);
@@ -25,6 +28,7 @@ export function useGetWeather() {
       console.log("res", res);
       setIsError(false);
     } catch (error) {
+      console.log("error", error);
       setIsError(true);
     } finally {
       setIsLoading(false);
@@ -35,10 +39,24 @@ export function useGetWeather() {
   useEffect(() => {
     console.warn("UE = HOOK - GETWEATHER");
     // condition pour executer le fetch:
+    console.log("coord", coords);
     if (coords && coords.latitude !== null && coords.longitude !== null) {
       fetchWeather(coords);
     }
   }, [coords]);
+
+  useEffect(() => {
+    console.log("UE - hook utiliser cache");
+    if (errorBrowserLocation) {
+      //recup le cache si il y a un probleme de location
+      const currentStorageKeys = Object.keys(localStorage);
+      console.log("currentStorageKeys", currentStorageKeys);
+
+      const currentStorageData = getCachedDatas(currentStorageKeys[0]);
+      console.log("currentStorageData", currentStorageData);
+      setCachedWeather(currentStorageData.storageValue);
+    }
+  }, [errorBrowserLocation]);
 
   return {
     weatherInfos: weatherInfos || cachedWeather,

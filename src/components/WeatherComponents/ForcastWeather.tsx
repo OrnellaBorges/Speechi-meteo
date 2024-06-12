@@ -71,18 +71,10 @@ export default function ForcastWeather() {
         }}
       >
         {fakeHourlyForecast.map((hourlyData, index) => (
-          <li
-            key={index}
-            className="forcastItem"
-            style={{
-              border: "1px solid yellow",
-              width: "max-content",
-              padding: "0.5rem",
-            }}
-          >
-            <div>{formatTimestampToHour(hourlyData.time)}</div>
-            <div style={{ fontSize: "2rem" }}>{hourlyData.icon}</div>
-            <div>{hourlyData.temperature}°</div>
+          <li key={index} className="hourlyForcast-Item">
+            <div className="time">{formatTimestampToHour(hourlyData.time)}</div>
+            <div className="icon">{hourlyData.icon}</div>
+            <div className="temperature">{hourlyData.temperature}°</div>
           </li>
         ))}
       </ul>

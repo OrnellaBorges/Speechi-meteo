@@ -1,19 +1,25 @@
-import { WiHumidity, WiStrongWind } from "react-icons/wi";
-
 export default function CurrentWeatherDetails() {
   return (
     <div className="currentDetails">
-      <p>Feel 13°</p>
-      <p>Min 6°</p>
-      <p>Max 16°</p>
-
-      <div>
-        <WiStrongWind style={{ fontSize: "2rem" }} />
-        15%
+      <div className="detail">
+        <p>Feel like</p>
+        <p>13°</p>
       </div>
-      <div>
-        <WiHumidity style={{ fontSize: "2rem" }} />
-        15%
+      <div className="detail">
+        <p>Min</p>
+        <p>6°</p>
+      </div>
+      <div className="detail">
+        <p>Max</p>
+        <p>16°</p>
+      </div>
+      <div className="detail">
+        <p>Humidity</p>
+        <p>15%</p>
+      </div>
+      <div className="detail">
+        <p>Wind</p>
+        <p>15%</p>
       </div>
     </div>
   );

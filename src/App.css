@@ -35,12 +35,38 @@ section {
   width: 100%;
   text-align: center;
 
+  border-radius: 1rem;
   margin-bottom: 1rem;
+
+  overflow: hidden;
+}
+
+.currentWeather {
+  padding-bottom: 1rem;
 }
 
 .currentDetails {
-  border: 2px solid yellow;
+  border: 1px solid yellow;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.detail {
+  padding: 0.5rem;
+}
+
+.hourlyForcast-Item {
+  border: 1px solid yellow;
+  width: max-content;
+  padding: 0.5rem;
+}
+
+.hourlyForcast-Item > .time {
+  font-weight: 600;
+}
+
+.hourlyForcast-Item > .icon {
+  display: flex;
+  font-size: 2rem;
 }
