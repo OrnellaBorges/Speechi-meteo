@@ -1,12 +1,15 @@
 import { WeatherResponse } from "../../types/WeatherTypes";
+import { formatCurrentDate } from "../../utils/formatTime";
 
 type CurrentWeatherProps = {
   weatherInfos: WeatherResponse;
 };
 export default function CurrentWeather({ weatherInfos }: CurrentWeatherProps) {
+  //console.log("weatherInfos =====", weatherInfos);
+
   return (
     <div className="currentWeather">
-      <p className="date">{new Date().toLocaleDateString()}</p>
+      <p className="date">{formatCurrentDate()}</p>
       <p className="temperature" style={{ fontSize: "3rem" }}>
         {Math.round(weatherInfos.main.temp)}°C
       </p>

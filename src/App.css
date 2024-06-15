@@ -61,20 +61,27 @@ section {
 .forcastContainer {
   display: flex;
   overflow: scroll;
-  border: 2px solid;
+  border: 3px solid rgb(127, 136, 255);
 }
 
-.hourlyForcast-Item {
+.scrollYList {
+  flex-direction: column;
+}
+
+.forcast-Item {
   border: 1px solid yellow;
+}
+
+.hourly {
   width: max-content;
   padding: 0.5rem;
 }
 
-.hourlyForcast-Item > .time {
+.hourly > .time {
   font-weight: 600;
 }
 
-.hourlyForcast-Item > .icon {
+.hourly > .icon {
   display: flex;
   font-size: 2rem;
 }

@@ -1,4 +1,5 @@
 import { WiDaySunny } from "react-icons/wi";
+import { formatTimestampToHour } from "../../utils/formatTime";
 
 export default function ForcastWeather() {
   const fakeHourlyForecast = [
@@ -44,25 +45,10 @@ export default function ForcastWeather() {
     },
   ];
 
-  // Convertir un timestamp en une heure au format "19h"
-  function formatTimestampToHour(timestamp: number) {
-    // Créer une nouvelle instance de Date à partir du timestamp
-    const date = new Date(timestamp * 1000); // *1000 car le timestamp est en secondes
-    //console.log("date", date);
-
-    // Obtenir l'heure et les minutes de la date
-    const hour = date.getHours();
-
-    // Construire l'heure au format "19h"
-    const formattedHour = `${hour}h`;
-
-    return formattedHour;
-  }
-
   return (
     <ul className="forcastContainer">
       {fakeHourlyForecast.map((hourlyData, index) => (
-        <li key={index} className="hourlyForcast-Item">
+        <li key={index} className="forcast-Item hourly">
           <div className="time">{formatTimestampToHour(hourlyData.time)}</div>
           <div className="icon">{hourlyData.icon}</div>
           <div className="temperature">{hourlyData.temperature}°</div>

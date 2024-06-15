@@ -1,6 +1,7 @@
 import CurrentWeather from "../components/WeatherComponents/CurrentWeather";
 import CurrentWeatherDetails from "../components/WeatherComponents/CurrentWeatherDetails";
 import ForcastWeather from "../components/WeatherComponents/ForcastWeather";
+import ForcastWeek from "../components/WeatherComponents/ForcastWeek";
 import WeatherCard from "../components/WeatherComponents/WeatherCard";
 import { useWeather } from "../contexts/WeatherContext";
 
@@ -48,6 +49,9 @@ export function Weather() {
           </WeatherCard>
           <WeatherCard customTitle=" Hourly Forcast ">
             <ForcastWeather />
+          </WeatherCard>
+          <WeatherCard customTitle=" Weekly Forcast ">
+            <ForcastWeek />
           </WeatherCard>
         </section>
       )}

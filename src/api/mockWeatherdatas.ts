@@ -7,8 +7,8 @@ export const mockWeatherData = {
     dt: 1684929490,
     sunrise: 1684926645,
     sunset: 1684977332,
-    temp: 292.55,
-    feels_like: 292.87,
+    temp: 17.52,
+    feels_like: 16.36,
     pressure: 1014,
     humidity: 89,
     dew_point: 290.69,
@@ -43,8 +43,8 @@ export const mockWeatherData = {
   hourly: [
     {
       dt: 1684926000,
-      temp: 292.01,
-      feels_like: 292.33,
+      temp: 18.23,
+      feels_like: 18.9,
       pressure: 1014,
       humidity: 91,
       dew_point: 290.51,
