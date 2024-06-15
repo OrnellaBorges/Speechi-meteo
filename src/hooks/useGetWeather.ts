@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { getWeatherByCoords } from "../api/getWeatherDatas";
 import { useClientLocation } from "./useClientLocation";
 //import { CoordType } from "../types/CoordsType";
-import { WeatherResponse } from "../types/WeatherTypes";
-import { CoordsType } from "../types/CoordsType";
+import { Coords, WeatherResponse } from "../types/WeatherTypes";
 import { getCachedDatas } from "../utils/cacheUtils";
 
 export function useGetWeather() {
@@ -19,8 +18,8 @@ export function useGetWeather() {
   );
 
   // fonction qui fait le fetch et appel getWeatherByCoords
-  const fetchWeather = async (coords: CoordsType) => {
-    console.log("fetching");
+  const fetchWeather = async (coords: Coords) => {
+    console.log("fetching en cours");
     setIsLoading(true);
     try {
       const res = await getWeatherByCoords(coords);
@@ -39,21 +38,25 @@ export function useGetWeather() {
   useEffect(() => {
     console.warn("UE = HOOK - GETWEATHER");
     // condition pour executer le fetch:
-    console.log("coord", coords);
-    if (coords && coords.latitude !== null && coords.longitude !== null) {
+    if (coords && coords.lat !== null && coords.lon !== null) {
       fetchWeather(coords);
     }
   }, [coords]);
 
+  // en cas de PB de geolocation:
+  // Renvoyer les datas du LS si elle existe
+
   useEffect(() => {
-    console.log("UE - hook utiliser cache");
+    console.log("UE useGetWeather : Geoloc unvailable");
     if (errorBrowserLocation) {
       //recup le cache si il y a un probleme de location
+      // envoyer quoi qu'il arrive les données dans le cache
       const currentStorageKeys = Object.keys(localStorage);
       console.log("currentStorageKeys", currentStorageKeys);
 
       const currentStorageData = getCachedDatas(currentStorageKeys[0]);
-      console.log("currentStorageData", currentStorageData);
+      console.log("ENVOI LES DATAS DU CACHE ");
+      // mise a jour du state cachedWeather
       setCachedWeather(currentStorageData.storageValue);
     }
   }, [errorBrowserLocation]);

@@ -1,5 +1,4 @@
-import { CoordsType } from "../types/CoordsType";
-import { WeatherResponse } from "../types/WeatherTypes";
+import { Coords, WeatherResponse } from "../types/WeatherTypes";
 
 type CachedWeatherDatas = {
   storageValue: WeatherResponse;
@@ -10,9 +9,9 @@ type CachedWeatherDatas = {
 const CACHE_EXPIRATION_TIME = 2 * 60 * 1000; //= 2min
 
 //fonction qui permet de creer une key pour le cache besoins des coords en params
-export function generateKey(coords: CoordsType): string {
-  const { latitude, longitude } = coords; // destructuration de l'objet coords
-  const cacheKey = `weather_${latitude}_${longitude}`; // creation clé unique de cache
+export function generateKey(coords: Coords): string {
+  const { lat, lon } = coords; // destructuration de l'objet coords
+  const cacheKey = `weather_${lat}_${lon}`; // creation clé unique de cache
   return cacheKey;
 }
 
@@ -26,7 +25,7 @@ export function checkCacheDataExist(): boolean {
 
 //Creation du cache Si on a verifié qu'il n'y a pas de cache et qu'on a fetch la data de l'api
 export function createCacheDatas(
-  coords: CoordsType,
+  coords: Coords,
   apiResponseValue: WeatherResponse
 ) {
   //creation des datas a envoyer dans le storage

@@ -43,6 +43,8 @@ section {
 
 .currentWeather {
   padding-bottom: 1rem;
+  border: 2px solid red;
+  width: 100%;
 }
 
 .currentDetails {
@@ -54,6 +56,12 @@ section {
 
 .detail {
   padding: 0.5rem;
+}
+
+.forcastContainer {
+  display: flex;
+  overflow: scroll;
+  border: 2px solid;
 }
 
 .hourlyForcast-Item {

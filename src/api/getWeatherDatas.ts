@@ -1,23 +1,23 @@
 import axios from "axios";
 import { WEATHER_API_KEY } from "../config";
-import { CoordsType } from "../types/CoordsType";
 import {
   checkCacheDataExist,
   getCachedDatas,
   isCacheExpired,
   createCacheDatas,
 } from "../utils/cacheUtils";
+import { Coords } from "../types/WeatherTypes";
 
 const urlWeather = "https://api.openweathermap.org/data/2.5/weather";
 
 // Fonction pour effectuer l'appel à l'API
-const callWeatherAPI = async (coords: CoordsType) => {
+const callWeatherAPI = async (coords: Coords) => {
   try {
     console.log("Calling API");
     const response = await axios.get(`${urlWeather}`, {
       params: {
-        lat: coords.latitude,
-        lon: coords.longitude,
+        lat: coords.lat,
+        lon: coords.lon,
         appid: WEATHER_API_KEY,
         units: "metric",
       },
@@ -29,7 +29,7 @@ const callWeatherAPI = async (coords: CoordsType) => {
   }
 };
 
-export const getWeatherByCoords = async (coords: CoordsType) => {
+export const getWeatherByCoords = async (coords: Coords) => {
   // SI LS existe pas !
   if (!checkCacheDataExist()) {
     try {
@@ -46,25 +46,27 @@ export const getWeatherByCoords = async (coords: CoordsType) => {
 
   console.log("STORAGE EXIST!");
 
-  // Récupérer la première clé du localStorage
+  //SINON => Récup Key du localStorage
   const currentStorageKeys = Object.keys(localStorage);
   const key = currentStorageKeys[0];
-  console.log("key", key);
+  //console.log("key", key);
 
   const currentStorageData = getCachedDatas(key);
-  console.log("localStorageData", currentStorageData);
+  //console.log("localStorageData", currentStorageData);
 
   const isExpired = isCacheExpired(currentStorageData);
-  console.log("isExpired", isExpired);
+  console.warn("STORAGE IS EXPIRED", isExpired);
 
   if (!isExpired) {
     // Utiliser le cache si pas expiré
     console.log("not expired, use cache!", key);
 
     // Récupérer les données du cache
-    const useStorageDatas = currentStorageData.storageValue;
-    console.log("useStorageDatas", useStorageDatas);
-    return useStorageDatas;
+    console.log(
+      "currentStorageData.storageValue",
+      currentStorageData.storageValue
+    );
+    return currentStorageData.storageValue;
   } else {
     console.log("Expired, recall API");
     // Effacer les données du cache

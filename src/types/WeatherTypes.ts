@@ -29,8 +29,8 @@ export type Sys = {
 };
 
 export type Coords = {
-  lon: number;
-  lat: number;
+  lon: number | null;
+  lat: number | null;
 };
 
 export type Weather = {

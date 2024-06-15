@@ -60,24 +60,14 @@ export default function ForcastWeather() {
   }
 
   return (
-    <>
-      <h3 style={{ marginBottom: "1rem" }}>Hourly Forecast</h3>
-      <ul
-        className="forcast"
-        style={{
-          border: "1px solid black",
-          overflow: "scroll",
-          display: "flex",
-        }}
-      >
-        {fakeHourlyForecast.map((hourlyData, index) => (
-          <li key={index} className="hourlyForcast-Item">
-            <div className="time">{formatTimestampToHour(hourlyData.time)}</div>
-            <div className="icon">{hourlyData.icon}</div>
-            <div className="temperature">{hourlyData.temperature}°</div>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="forcastContainer">
+      {fakeHourlyForecast.map((hourlyData, index) => (
+        <li key={index} className="hourlyForcast-Item">
+          <div className="time">{formatTimestampToHour(hourlyData.time)}</div>
+          <div className="icon">{hourlyData.icon}</div>
+          <div className="temperature">{hourlyData.temperature}°</div>
+        </li>
+      ))}
+    </ul>
   );
 }

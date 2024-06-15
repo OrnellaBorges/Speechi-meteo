@@ -1,12 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 
-import { CoordsType } from "../types/CoordsType";
 import { Coords, WeatherResponse } from "../types/WeatherTypes";
 
 import { useGetWeather } from "../hooks/useGetWeather";
@@ -16,7 +9,7 @@ type WeatherContextType = {
   weatherInfos: WeatherResponse | null;
   isLoading: boolean;
   isError: boolean;
-  coords: CoordsType | null;
+  coords: Coords | null;
   errorBrowserLocation: boolean;
 };
 

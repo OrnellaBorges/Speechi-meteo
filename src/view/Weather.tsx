@@ -20,11 +20,11 @@ export function Weather() {
       return (
         <>
           <section className="weatherContainer">
-            <WeatherCard>
+            <WeatherCard customTitle="jeue">
               <CurrentWeather weatherInfos={weatherInfos} />
               <CurrentWeatherDetails />
             </WeatherCard>
-            <WeatherCard>
+            <WeatherCard customTitle="k;cldzpa">
               <ForcastWeather />
             </WeatherCard>
           </section>
@@ -42,11 +42,11 @@ export function Weather() {
     <>
       {weatherInfos && (
         <section className="weatherContainer">
-          <WeatherCard>
+          <WeatherCard customTitle="Current Weather">
             <CurrentWeather weatherInfos={weatherInfos} />
             <CurrentWeatherDetails />
           </WeatherCard>
-          <WeatherCard>
+          <WeatherCard customTitle=" Hourly Forcast ">
             <ForcastWeather />
           </WeatherCard>
         </section>

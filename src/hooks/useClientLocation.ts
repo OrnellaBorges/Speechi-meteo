@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CoordsType } from "../types/CoordsType";
+import { Coords } from "../types/WeatherTypes";
 
 // Fonction debounce
 /* function debounce(func, wait) {
@@ -11,7 +11,7 @@ import { CoordsType } from "../types/CoordsType";
   } */
 
 export function useClientLocation() {
-  const [coords, setCoords] = useState<CoordsType | null>(null);
+  const [coords, setCoords] = useState<Coords | null>(null);
   const [errorBrowserLocation, setErrorBrowserLocation] =
     useState<boolean>(false);
   const [successCount, setSuccessCount] = useState<number>(0);
@@ -24,12 +24,11 @@ export function useClientLocation() {
     }
 
     const isSuccess = (position: GeolocationPosition) => {
-      console.log("WATCHING A CHANGE");
-      console.log(" SUCCESS! TIME 10S watchCoord", position.coords);
+      console.log(" SUCCESS GEOLOC!");
 
       setCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
       });
       // Incrémenter le compteur de succès
       setSuccessCount((prevCount) => {
