@@ -15,10 +15,10 @@ export function formatTimestampToHour(timestamp: number) {
 
 export function formatCurrentDate() {
   const currentTimestamp = Date.now();
-  console.log("timestamp", currentTimestamp);
+  //console.log("timestamp", currentTimestamp);
 
   const currentDate = new Date(currentTimestamp);
-  console.log("currentDate", currentDate);
+  //console.log("currentDate", currentDate);
 
   /* const weekDays = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]; */
   /*     const months = [

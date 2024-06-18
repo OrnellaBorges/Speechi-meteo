@@ -13,6 +13,9 @@ export function Weather() {
   if (isLoading) {
     return <p>Loading...please wait a few moments</p>;
   }
+
+  // mais si chargement et cache peut etre utiliser
+
   // Afficher les messages d'erreur s'il y a une erreur de localisation
   if (errorBrowserLocation) {
     if (!weatherInfos) {
@@ -21,11 +24,11 @@ export function Weather() {
       return (
         <>
           <section className="weatherContainer">
-            <WeatherCard customTitle="jeue">
+            <WeatherCard customTitle="ERROR LOCATION">
               <CurrentWeather weatherInfos={weatherInfos} />
               <CurrentWeatherDetails />
             </WeatherCard>
-            <WeatherCard customTitle="k;cldzpa">
+            <WeatherCard customTitle="ERROR LOCATION">
               <ForcastWeather />
             </WeatherCard>
           </section>
@@ -40,21 +43,26 @@ export function Weather() {
   }
 
   return (
-    <>
+    <article>
       {weatherInfos && (
-        <section className="weatherContainer">
-          <WeatherCard customTitle="Current Weather">
-            <CurrentWeather weatherInfos={weatherInfos} />
-            <CurrentWeatherDetails />
-          </WeatherCard>
-          <WeatherCard customTitle=" Hourly Forcast ">
-            <ForcastWeather />
-          </WeatherCard>
-          <WeatherCard customTitle=" Weekly Forcast ">
-            <ForcastWeek />
-          </WeatherCard>
-        </section>
+        <>
+          <section className="weatherCurrent">
+            <WeatherCard customTitle="Current Weather">
+              <CurrentWeather weatherInfos={weatherInfos} />
+              <CurrentWeatherDetails />
+            </WeatherCard>
+          </section>
+
+          <section className="weatherForcast">
+            <WeatherCard customTitle="Hourly Forcast">
+              <ForcastWeather />
+            </WeatherCard>
+            <WeatherCard customTitle="Weekly Forcast">
+              <ForcastWeek />
+            </WeatherCard>
+          </section>
+        </>
       )}
-    </>
+    </article>
   );
 }

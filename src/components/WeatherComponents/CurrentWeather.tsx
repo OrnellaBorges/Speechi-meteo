@@ -10,7 +10,10 @@ export default function CurrentWeather({ weatherInfos }: CurrentWeatherProps) {
   return (
     <div className="currentWeather">
       <p className="date">{formatCurrentDate()}</p>
-      <p className="temperature" style={{ fontSize: "3rem" }}>
+      <p
+        className="temperature"
+        style={{ fontSize: "3rem", padding: "0.5rem 0" }}
+      >
         {Math.round(weatherInfos.main.temp)}°C
       </p>
       <div className="apiIcon">

@@ -1,3 +1,8 @@
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -17,29 +22,38 @@ header {
 main {
   flex: 1 1 auto;
   background-color: gray;
-  overflow: auto;
   padding: 0 1rem;
+  overflow: hidden;
 }
 
-section {
+article {
   border: 2px solid green;
   background-color: green;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 1;
 }
 
 .card {
   border: 1px solid yellow;
   color: white;
 
+  overflow: hidden;
+
   width: 100%;
   text-align: center;
 
   border-radius: 1rem;
   margin-bottom: 1rem;
+}
 
-  overflow: hidden;
+.weatherCurrent {
+  position: sticky;
+  background-color: blue;
+  border: 2px solid blue;
 }
 
 .currentWeather {
@@ -50,6 +64,7 @@ section {
 
 .currentDetails {
   border: 1px solid yellow;
+  background-color: rgb(43, 41, 41);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -59,9 +74,16 @@ section {
   padding: 0.5rem;
 }
 
+.weatherForcast {
+  flex: 1;
+  background-color: rgb(131, 16, 247);
+  border: 2px solid rgb(131, 16, 247);
+  overflow-y: auto;
+}
+
 .forcastContainer {
   display: flex;
-  overflow: scroll;
+  overflow: auto;
   border: 3px solid red;
 }
 
@@ -85,4 +107,21 @@ section {
 .hourly > .icon {
   display: flex;
   font-size: 2rem;
+}
+
+@media screen and (min-width: 728px) {
+  article {
+    max-width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  article > section {
+    width: 100%;
+  }
+  .weatherForcast {
+    display: flex;
+  }
+  .weatherForcast {
+    display: flex;
+  }
 }
