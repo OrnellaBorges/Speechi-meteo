@@ -47,3 +47,9 @@ export function formatCurrentDate() {
 
   return dateOfTheDay;
 }
+
+export function getNextDay(date: number) {
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() + 1);
+  return nextDay;
+}
