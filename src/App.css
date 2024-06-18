@@ -48,6 +48,13 @@ article {
 
   border-radius: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.cardTitle {
+  position: sticky;
+  background-color: aquamarine;
+  padding: 1rem;
 }
 
 .weatherCurrent {
@@ -87,7 +94,7 @@ article {
   border: 3px solid red;
 }
 
-.scrollYList {
+.column {
   flex-direction: column;
 }
 

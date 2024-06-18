@@ -10,9 +10,7 @@ export default function WeatherCard({
 }: WeatherCardProps) {
   return (
     <div className="card">
-      <h2 className="cardTitle" style={{ marginBottom: "1rem" }}>
-        {customTitle}
-      </h2>
+      <h2 className="cardTitle">{customTitle}</h2>
       {children}
     </div>
   );
